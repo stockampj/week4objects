@@ -7,27 +7,59 @@
   <script src="js/scripts.js"></script>
   <title>Pizza!</title>
 </head>
-  <body>
-    <div class="row" id="header">
-      <div class="col">
-        <h1>Header</h1>
-      </div>
+<body>
+  <div class="row" id="header">
+    <div class="col">
+      <h1>Header</h1>
     </div>
+  </div>
 
-    <div class="row" id="content">
+
+  <form class="" method="post" id="pizza-mixer">
+    <div class="row" id="pizza-chooser">
       <div class="col" id="content-left">
-        <p>left</p>
+        <h4>Pick a size:</h4>
+        <select id="size-selection">
+          <option value="sm">personal</option>
+          <option value="md">medium</option>
+          <option value="lg">party</option>
+        </select>
       </div>
+
+      <div class="col" id="content-middle">
+        <p>middle</p>
+
+
+
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+          <br>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+          <br>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+          <br>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+          <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+
+
+
+      </div>
+
       <div class="col" id="content-right">
         <p>right</p>
       </div>
-    </div>
 
-    <div class="row" id="user-display">
-      <div class="col">
-        <p>bottom stuff</p>
-      </div>
     </div>
+  </form>
 
-  </body>
+
+  <div class="row" id="user-display">
+    <div class="col">
+      <p>bottom stuff</p>
+    </div>
+  </div>
+
+</body>
 </html>

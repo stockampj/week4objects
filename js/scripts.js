@@ -59,6 +59,6 @@ Pizza.prototype.calculateCost = function() {
 }
 
 $(document).ready(function(){
-
+  
 
 });
