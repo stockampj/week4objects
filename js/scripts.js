@@ -11,11 +11,11 @@ function Pizza (username) {
   this.user = username,
   this.size = ""
   this.toppings = [],
-  this.crust = "",
+  this.crust = "standard",
   this.cost = ""
 };
 
-Pizza.prototype.addSize = function(size) {
+Pizza.prototype.chooseSize = function(size) {
   this.size = size;
 };
 
@@ -24,11 +24,41 @@ Pizza.prototype.addToppings = function(topping) {
 };
 
 Pizza.prototype.removeToppings = function(topping) {
-  var toppingtoDelete = topping;
+  var toppingToDelete = topping;
+  var currentToppings = [];
   for (i=0 ; i<this.toppings.length; i++) {
-    if (toppingtoDelete === this.toppings[i]) {
-      delete this.toppings[i];
-      return "removed " + toppingToDelete;
+    if (toppingToDelete !== this.toppings[i]) {
+      currentToppings.push(this.toppings[i]);
     }
   };
+  this.toppings = currentToppings
 };
+
+Pizza.prototype.chooseCrust = function(crust) {
+  this.crust = crust;
+};
+
+Pizza.prototype.calculateCost = function() {
+  var toppingsCost = (this.toppings.length)*1.5;
+  var crustCost = 0;
+  var sizeCost = 15;
+  if (this.crust !== "standard") {
+    crustCost = 1.20;
+  }
+  if (this.size === "lg") {
+    var sizeCost = 18;
+  } else if (this.size === "md") {
+    var sizeCost = 15;
+  } else if (this.size === "sm") {
+    var sizeCost = 12;
+  } else {
+    return false;
+  }
+  this.cost = toppingsCost + crustCost + sizeCost;
+  return this.cost;
+}
+
+$(document).ready(function(){
+
+
+});
