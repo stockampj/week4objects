@@ -9,7 +9,8 @@
 
 function Pizza (username) {
   this.user = username,
-  this.size = ""
+  this.size = "",
+  this.sauce= "",
   this.toppings = [],
   this.crust = "standard",
   this.cost = ""
@@ -18,6 +19,10 @@ function Pizza (username) {
 Pizza.prototype.chooseSize = function(size) {
   this.size = size;
 };
+
+Pizza.prototype.chooseSauce = function(sauce) {
+  this.sauce = sauce;
+}
 
 Pizza.prototype.addToppings = function(topping) {
   this.toppings.push(topping);
@@ -59,6 +64,6 @@ Pizza.prototype.calculateCost = function() {
 }
 
 $(document).ready(function(){
-  
+
 
 });
