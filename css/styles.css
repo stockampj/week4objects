@@ -6,3 +6,11 @@ body {
 .checkbox {
   margin: 5px;
 }
+
+#size-sauce-crust {
+  display: none;
+}
+
+#toppings {
+  display: none;
+}
