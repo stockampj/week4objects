@@ -64,12 +64,13 @@ Pizza.prototype.chooseCrust = function(crust) {
 
 Pizza.prototype.calculateCost = function() {
   var numberOfToppings = this.toppings.length
+  var toppingsCost = "";
   if (numberOfToppings <= 2) {
-    var toppingsCost = 0;
+    toppingsCost = 0;
   } else {
-    var toppingsCost = (numberOfToppings - 2)*1.5
+    toppingsCost = (numberOfToppings - 2)*1.5
   }
-  var crustCost;
+  var crustCost= 0;
   if (this.crust !== "standard") {
     crustCost = 1.20;
   }
@@ -83,6 +84,7 @@ Pizza.prototype.calculateCost = function() {
   } else {
     return false;
   }
+  console.log(crustCost)
   this.cost = toppingsCost + crustCost + sizeCost;
   return this.cost;
 }
@@ -98,11 +100,13 @@ function createPizza (size, sauce, crust, toppings) {
   pizza.chooseCrust(crust);
   pizza.toppings = toppings;
   pizza.calculateCost();
-  order.addPizza(pizza)
+  order.addPizza(pizza);
 }
 
 
+
 $(document).ready(function(){
+
   $("#sign-in-form").submit(function(event) {
     event.preventDefault();
     var name = $("#username").val()
@@ -112,7 +116,6 @@ $(document).ready(function(){
 
   $("#pizza-mixer").submit(function(event) {
     event.preventDefault();
-
     var size = $("#size-selection").val();
     var sauce = $("#sauce-selection").val();
     var crust = $("#crust-selection").val();
@@ -121,5 +124,34 @@ $(document).ready(function(){
       toppings.push($(this).val());
     });
     createPizza (size, sauce, crust, toppings);
+    showOrder();
   })
+
+  function showOrder() {
+    for (var i=0; i< order.pizzas.length; i++) {
+      if (order.pizzas[i]){
+        var pizza = order.pizzas[i];
+        var id = pizza.pizzaID;
+        var size = pizza.size;
+        var crust = pizza.crust;
+        var sauce = pizza.sauce;
+        var toppings = pizza.toppings;
+        var cost = pizza.cost;
+        var toppingsString = "";
+        // toppings.forEach(function(topping){
+        //   console.log(toppingsString)
+        //   toppingsString.append(topping+", ");
+        // })
+        var pizzaString = "<div id='" + id + "'><p>" + size + "pizza with a " + crust + " crust, " + sauce + " sauce and the following toppings:<br>" + toppingsString + "</p><p class='pizzacost'>$" + cost +"</p>";
+
+        $("#orderlist").append(pizzaString);
+      };
+    };
+
+    $(".pizzasize").text(pizza.size)
+    $(".pizzacrust")
+    $(".pizzasauce")
+    $(".pizzatoppings")
+    $(".pizzacost")
+  }
 });
