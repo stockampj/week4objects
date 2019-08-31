@@ -3,27 +3,27 @@ var order = new Order();
 function Order () {
   this.orderName = "",
   this.pizzas = [],
-  count = 0
+  this.count = 0
 }
 
 Order.prototype.addPizza = function(pizza) {
-  count++;
-  pizza.addID(count);
+  this.count++;
+  pizza.addID(this.count);
   this.pizzas.push(pizza);
 }
 
 Order.prototype.getPizza = function(pizzaID) {
-  for (var i = 0; i < pizzas.length; i++) {
-      if (pizzas[i].pizzaID === i) {
-        return pizzas[i];
-      }
-    return false;
+  for (var i = 0; i < this.pizzas.length; i++) {
+    if (this.pizzas[i].pizzaID === i+1) {
+      return this.pizzas[i];
+    } else {
+      return false;
+    };
   };
 };
 
-function Pizza (username) {
+function Pizza () {
   this.pizzaID = "",
-  this.user = username,
   this.size = "",
   this.sauce= "",
   this.crust = "standard",
@@ -47,7 +47,7 @@ Pizza.prototype.addToppings = function(topping) {
   this.toppings.push(topping);
 };
 
-Pizza.prototype.removeToppings = function(topping) {
+Pizza.prototype.removeTopping = function(topping) {
   var toppingToDelete = topping;
   var currentToppings = [];
   for (i=0 ; i<this.toppings.length; i++) {
@@ -63,12 +63,17 @@ Pizza.prototype.chooseCrust = function(crust) {
 };
 
 Pizza.prototype.calculateCost = function() {
-  var toppingsCost = (this.toppings.length)*1.5;
-  var crustCost = 0;
-  var sizeCost = 15;
+  var numberOfToppings = this.toppings.length
+  if (numberOfToppings <= 2) {
+    var toppingsCost = 0;
+  } else {
+    var toppingsCost = (numberOfToppings - 2)*1.5
+  }
+  var crustCost;
   if (this.crust !== "standard") {
     crustCost = 1.20;
   }
+  var sizeCost;
   if (this.size === "lg") {
     var sizeCost = 18;
   } else if (this.size === "md") {
@@ -82,29 +87,39 @@ Pizza.prototype.calculateCost = function() {
   return this.cost;
 }
 
+function signIn (name) {
+  order.orderName = name
+}
+
+function createPizza (size, sauce, crust, toppings) {
+  var pizza = new Pizza();
+  pizza.chooseSize(size);
+  pizza.chooseSauce(sauce);
+  pizza.chooseCrust(crust);
+  pizza.toppings = toppings;
+  pizza.calculateCost();
+  order.addPizza(pizza)
+}
+
+
 $(document).ready(function(){
   $("#sign-in-form").submit(function(event) {
     event.preventDefault();
     var name = $("#username").val()
-    
-    var pizza = new Pizza()
-    console.log(pizza)
+    signIn(name)
+    console.log(order)
   })
 
   $("#pizza-mixer").submit(function(event) {
     event.preventDefault();
+
     var size = $("#size-selection").val();
     var sauce = $("#sauce-selection").val();
     var crust = $("#crust-selection").val();
-    var toppings = "";
-
-    pizza.chooseSize(size);
-    pizza.chooseSauce(sauce);
-    pizza.chooseCrust(crust);
-    $("input:checkbox[name=topper]:checked").each(function(){
-      pizza.toppings.push($(this).val());
+    var toppings = [];
+    $("input:checkbox[name=toppers]:checked").each(function(){
+      toppings.push($(this).val());
     });
+    createPizza (size, sauce, crust, toppings);
   })
-
-
 });
