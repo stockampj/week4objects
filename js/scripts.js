@@ -1,19 +1,38 @@
-// <button onclick="setTimeout(myFunction, 3000)">Try it</button>
-//
-// <script>
-// function myFunction() {
-//   alert('Hello');
-// }
-// </script>
+var order = new Order();
 
+function Order () {
+  this.orderName = "",
+  this.pizzas = [],
+  count = 0
+}
+
+Order.prototype.addPizza = function(pizza) {
+  count++;
+  pizza.addID(count);
+  this.pizzas.push(pizza);
+}
+
+Order.prototype.getPizza = function(pizzaID) {
+  for (var i = 0; i < pizzas.length; i++) {
+      if (pizzas[i].pizzaID === i) {
+        return pizzas[i];
+      }
+    return false;
+  };
+};
 
 function Pizza (username) {
+  this.pizzaID = "",
   this.user = username,
   this.size = "",
   this.sauce= "",
-  this.toppings = [],
   this.crust = "standard",
-  this.cost = ""
+  this.toppings = [],
+  this.cost = 12
+};
+
+Pizza.prototype.addID = function (count) {
+  this.pizzaID = count;
 };
 
 Pizza.prototype.chooseSize = function(size) {
@@ -64,6 +83,28 @@ Pizza.prototype.calculateCost = function() {
 }
 
 $(document).ready(function(){
+  $("#sign-in-form").submit(function(event) {
+    event.preventDefault();
+    var name = $("#username").val()
+    
+    var pizza = new Pizza()
+    console.log(pizza)
+  })
+
+  $("#pizza-mixer").submit(function(event) {
+    event.preventDefault();
+    var size = $("#size-selection").val();
+    var sauce = $("#sauce-selection").val();
+    var crust = $("#crust-selection").val();
+    var toppings = "";
+
+    pizza.chooseSize(size);
+    pizza.chooseSauce(sauce);
+    pizza.chooseCrust(crust);
+    $("input:checkbox[name=topper]:checked").each(function(){
+      pizza.toppings.push($(this).val());
+    });
+  })
 
 
 });
