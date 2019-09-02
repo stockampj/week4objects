@@ -30,73 +30,72 @@
   </div>
 
   <form class="" method="post" id="pizza-mixer">
+
     <div class="row" id="pizza-chooser">
+
       <div class="col ui standard" id="size-sauce-crust">
         <h3 id="tagline">Start by choosing your size, crust and sauce</h3>
         <div class="row">
+          <div class="nav-spacer">
+          </div>
           <div class="col item">
-
             <h4>Size</h4>
-
             <label><input type="radio" name="size" value="Personal" checked>personal ($7)</label><br>
             <label><input type="radio" name="size" value="Medium">medium ($12)</label><br>
             <label><input type="radio" name="size" value="Party">party ($18)</label>
-
           </div>
           <div class="col item">
             <h4>Sauce</h4>
             <label><input type="radio" name="sauce" value="marinara" checked>marinara</label><br>
-            <label><input type="radio" name="sauce" value="white">alfredo</label><br>
+            <label><input type="radio" name="sauce" value="alfredo">alfredo</label><br>
             <label><input type="radio" name="sauce" value="pesto">pesto</label>
           </div>
-
-
           <div class="col item">
             <h4>Crust</h4>
             <label><input type="radio" name="crust" value="standard" checked>standard</label><br>
-            <label><input type="radio" name="crust" value="ultra-thin" checked>ultra-thin $1.20</label><br>
-            <label><input type="radio" name="crust" value="thick-crust">thick-crust $1.20</label><br>
+            <label><input type="radio" name="crust" value="ultra-thin" >thin $1.20</label><br>
+            <label><input type="radio" name="crust" value="thick-crust">thick $1.20</label><br>
           </div>
+            <img src="img/right.png" class="navigator" alt="right-arrow" id="to-toppings">
         </div>
-
-
-
-
-        <button type="button" name="button" id="to-toppings">choose toppings</button>
       </div>
 
       <div class="col ui standard" id="toppings">
         <h4>Toppings</h4>
-        <p>(first two are free, $1.50 for each additional)</p>
+        <h5>(first two are free, $1.50 for each additional)</h5>
+        <div class="row">
+          <img src="img/left.png" class="navigator" alt="left-arrow" id="to-size-sauce-crust">
+          <div class="col item">
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Olives">Olives</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Mushrooms">Mushrooms</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Pepperoni">Pepperoni</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Sausage">Sausage</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Pinapple">Pinapple</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Peppers">Peppers</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Onions">Onions</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Artichokes">Artichokes</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Tomatos">Tomatos</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Feta">Feta</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Mozzarella">Mozzarella</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Goat Cheese">Goat Cheese</label>
+            <label class="checkbox ing"><input class="checkbox" type="checkbox" name="toppers" value="Blue Cheese">Blue Cheese</label>
+          </div>
+          <div class="nav-spacer">
+          </div>
+        </div>
+        <div class="row ui" id="place-order">
+          <div class="col">
+            <button type="submit" name="button" id="add-order">add your masterpiece</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Olives">Olives</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Mushrooms">Mushrooms</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Pepperoni">Pepperoni</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Sausage">Sausage</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Pinapple">Pinapple</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Grilled Onions">Grilled Onions</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Peppers">Peppers</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Onions">Onions</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Artichokes">Artichokes</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Tomatos">Tomatos</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Feta">Feta</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Mozzarella">Mozzarella</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Goat Cheese">Goat Cheese</label>
-        <label class="checkbox"><input class="checkbox" type="checkbox" name="toppers" value="Blue Cheese">Blue Cheese</label>
-        <br>
-        <button type="button" name="button" id="to-size-sauce-crust">back to sauce and crust options</button>
-      </div>
-    </div>
-    <div class="row ui" id="place-order">
-      <div class="col">
-        <button type="submit" name="button">add your masterpiece</button>
-      </div>
-    </div>
   </form>
 
   <div class="row ui" id="order-summary">
     <div class="col standard">
-      <p>Here's your order so far.</p>
+      <h3>Here's your order so far.</h3>
       <ul class="orderlist">
       </ul>
       <p id="message"></p>
@@ -115,6 +114,7 @@
       <p>You can pick it up in 20 minutes.</p>
     </div>
   </div>
+
 
 </body>
 

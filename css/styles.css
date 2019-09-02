@@ -41,7 +41,8 @@ button {
   margin-right: auto;
   min-height: 400px;
   width: 100%;
-  padding: 20px;
+  min-width: 600px;
+  padding: 10px;
   padding-left: 50px;
   padding-right: 50px;
   background: rgb(244,211,159);
@@ -49,6 +50,8 @@ button {
   border-top: solid rgba(51, 27, 1, 0.8);
   border-bottom: solid rgba(51, 27, 1, 0.8);
   color: rgba(51, 27, 1, 0.8);
+  text-align: center;
+
 
 }
 
@@ -68,21 +71,59 @@ button {
   font-size: 30px;
   text-align: center;
   width: 300px;
+}
+
+
+.item {
+  text-align: left;
+}
+
+.navigator {
+  height: 200px;
+  width: 100px;
+  position: sticky;
 
 }
 
 .checkbox {
-  margin: 5px;
+  /* margin: 5px; */
 }
 
-.active {
-  border: solid blue;
+.ing {
+  width: 100px;
 }
+
+.nav-spacer {
+  width: 100px;
+}
+
+
+#add-order {
+  width: 400px;
+}
+
 
 .orderlist{
   list-style: none;
 }
 
+.pizza-description {
+  font-size: 18px;
+  background-color: rgba(51, 27, 1, 0.2);
+  color: rgba(51, 27, 1, 0.8);
+  font-size: 18px;
+  padding: 5px;
+  border: solid rgba(51, 27, 1, 0.8);
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.topping-list {
+  background-color: rgba(247, 237, 220, 0.3);
+  color: rgba(51, 27, 1, 0.8);
+  font-size: 18px;
+  font-weight: 400;
+}
 
 .ui {
   display: none;
@@ -90,4 +131,9 @@ button {
 
 #sign-in {
   display: block
+}
+
+.active {
+  background-color: rgba(51, 27, 1, 0.8);
+  color: #f7eddc;
 }

@@ -164,7 +164,7 @@ $("input[name='bird']:checked").val()
         toppings.forEach(function(topping){
           toppingsString +=  topping + ", ";
         })
-        var pizzaString = "<li class='pizza-description' id='" + id + "'><p>" + size + " pizza with " + crust + " crust and " + sauce + " sauce<br><span class='topping-list'>" + toppingsString + "</span><br><span class='pizzacost'>$" + cost.toFixed(2) +"</span></p></li>";
+        var pizzaString = "<li class='pizza-description' id='" + id + "'><p>" + size + " pizza with " + crust + " crust and " + sauce + " sauce.  <span class='pizzacost'>$" + cost.toFixed(2) +"</span><br><span class='topping-list badge badge-pill badge-secondary'>" + toppingsString + "</span></p></li>";
 
         $(".orderlist").append(pizzaString);
       };
@@ -190,9 +190,9 @@ $("input[name='bird']:checked").val()
   })
 
   function clearForm() {
-    $("#size-selection").val("sm");
-    $("#sauce-selection").val("marinara");
-    $("#crust-selection").val("standard");
+    $("input[name=size]").attr('checked',false);
+    $("input[name=sauce]").attr('checked',false);
+    $("input[name=crust]").attr('checked',false);
     $(".checkbox").prop("checked", false);
   }
 
