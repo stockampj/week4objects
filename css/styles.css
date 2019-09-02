@@ -1,6 +1,74 @@
 body {
+  background: rgb(209,111,50);
+  background: linear-gradient(90deg, rgba(209,111,50,1) 0%, rgba(210,178,121,1) 29%, rgba(106,46,0,1) 100%);
+  background-size: cover;
+  font-family: 'Englebert', sans-serif;
+}
+
+h1 {
+  font-size: 80px;
+  text-align: center;
+  color: rgba(51, 27, 1, 0.8);
+  padding-top: 40px;
+}
+
+h4 {
+  text-decoration: underline;
+}
+
+label {
+  font-size: 18px;
+}
+
+button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 10px;
+  height: 50px;
+  width: 200px;
+  font-size: 25px;
+  background: rgba(51, 27, 1, 0.8);
+  border: none;
+  border-radius: 5px;
+  color: #f7eddc;
+  text-align: center;
+}
+
+.standard {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 400px;
+  width: 100%;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background: rgb(244,211,159);
+  background: linear-gradient(90deg, rgba(244,211,159,1) 0%, rgba(247,237,220,1) 50%, rgba(244,211,159,1) 100%);
+  border-top: solid rgba(51, 27, 1, 0.8);
+  border-bottom: solid rgba(51, 27, 1, 0.8);
+  color: rgba(51, 27, 1, 0.8);
+
+}
+
+#tagline {
+  text-align: center;
   margin: 20px;
-  padding: 2px;
+}
+
+#sign-in-form {
+  text-align: center;
+}
+
+#username {
+  background: rgba(51, 27, 1, 0.2);
+  border: solid rgba(51, 27, 1, .8);
+  border-radius: 5px;
+  font-size: 30px;
+  text-align: center;
+  width: 300px;
+
 }
 
 .checkbox {
@@ -15,8 +83,9 @@ body {
   list-style: none;
 }
 
+
 .ui {
-  display: none
+  display: none;
 }
 
 #sign-in {

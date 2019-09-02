@@ -22,7 +22,7 @@ Order.prototype.calcOrderCost = function() {
       total += pizzaCost;
     }
   }
-  this.orderCost = total;
+  this.orderCost = total.toFixed(2);
 }
 
 Order.prototype.getPizza = function(pizzaID) {
@@ -79,17 +79,17 @@ Pizza.prototype.calculateCost = function() {
     crustCost = 1.20;
   }
   var sizeCost;
-  if (this.size === "lg") {
+  if (this.size === "Party") {
     var sizeCost = 18;
-  } else if (this.size === "md") {
-    var sizeCost = 15;
-  } else if (this.size === "sm") {
+  } else if (this.size === "Medium") {
     var sizeCost = 12;
+  } else if (this.size === "Personal") {
+    var sizeCost = 7;
   } else {
     return false;
   }
   this.cost = toppingsCost + crustCost + sizeCost;
-  return this.cost;
+  return this.cost.toFixed(2);
 }
 
 function signIn (name) {
@@ -128,11 +128,14 @@ $(document).ready(function(){
   $("#place-order").show();
   });
 
+
+$("input[name='bird']:checked").val()
+
   $("#pizza-mixer").submit(function(event) {
     event.preventDefault();
-    var size = $("#size-selection").val();
-    var sauce = $("#sauce-selection").val();
-    var crust = $("#crust-selection").val();
+    var size = $("input[name='size']:checked").val();
+    var sauce = $("input[name='sauce']:checked").val();
+    var crust = $("input[name='crust']:checked").val();
     var toppings = [];
     $("input:checkbox[name=toppers]:checked").each(function(){
       toppings.push($(this).val());
@@ -161,7 +164,7 @@ $(document).ready(function(){
         toppings.forEach(function(topping){
           toppingsString +=  topping + ", ";
         })
-        var pizzaString = "<li class='pizza-description' id='" + id + "'><p>" + size + " pizza with " + crust + " crust and " + sauce + " sauce<br><span class='topping-list'>" + toppingsString + "</span><br><span class='pizzacost'>$" + cost +"</span></p></li>";
+        var pizzaString = "<li class='pizza-description' id='" + id + "'><p>" + size + " pizza with " + crust + " crust and " + sauce + " sauce<br><span class='topping-list'>" + toppingsString + "</span><br><span class='pizzacost'>$" + cost.toFixed(2) +"</span></p></li>";
 
         $(".orderlist").append(pizzaString);
       };
@@ -194,8 +197,10 @@ $(document).ready(function(){
   }
 
   $("#complete-order").click(function(){
-    $(".ui").hide()
+    $(".ui").hide();
     $("#order-complete").show();
+    showOrder();
+    $(".totalcost").text(order.orderCost);
   })
 
 

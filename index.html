@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Englebert&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <script src="js/scripts.js"></script>
   <title>Pizza!</title>
 </head>
+
 <body>
   <div class="row" id="header">
     <div class="col">
-      <h1>Pizza Factory</h1>
+      <h1>PIZZA CRAFT</h1>
     </div>
   </div>
 
   <div class="row">
-    <div class="col ui" id="sign-in">
+    <div class="col ui standard" id="sign-in">
+      <h3 id="tagline">Let's design your perfect pizza together!</h3>
       <form class="" action="index.html" method="post" id="sign-in-form">
-        <label for="username">Please submit a name for your order</label><br>
+        <label for="username">We'll need your name so that we can keep track of your creations</label><br>
         <input type="text" name="" value="" id="username">
         <br>
-        <button type="submit" name="button">Start Your Order</button>
+        <button type="submit" name="button">Start Your Design</button>
       </form>
     </div>
   </div>
 
   <form class="" method="post" id="pizza-mixer">
     <div class="row" id="pizza-chooser">
+      <div class="col ui standard" id="size-sauce-crust">
+        <h3 id="tagline">Start by choosing your size, crust and sauce</h3>
+        <div class="row">
+          <div class="col item">
 
-      <div class="col ui" id="size-sauce-crust">
-        <h4>Size</h4>
-        <select id="size-selection">
-          <option value="sm">personal ($12)</option>
-          <option value="md">medium ($15)</option>
-          <option value="lg">party ($18)</option>
-        </select>
-        <h4>Sauce</h4>
-        <select id="sauce-selection">
-          <option value="marinara">marinara</option>
-          <option value="white">alfredo</option>
-          <option value="pesto">pesto</option>
-        </select>
-        <h4>Crust</h4>
-        <select id="crust-selection">
-          <option value="standard">standard</option>
-          <option value="ultra-thin">ultra-thin $1.20</option>
-          <option value="thick-crust">thick-crust $1.20</option>
-          <option value="stuffed">stuffed $1.20</option>
-        </select>
-        <br>
+            <h4>Size</h4>
+
+            <label><input type="radio" name="size" value="Personal" checked>personal ($7)</label><br>
+            <label><input type="radio" name="size" value="Medium">medium ($12)</label><br>
+            <label><input type="radio" name="size" value="Party">party ($18)</label>
+
+          </div>
+          <div class="col item">
+            <h4>Sauce</h4>
+            <label><input type="radio" name="sauce" value="marinara" checked>marinara</label><br>
+            <label><input type="radio" name="sauce" value="white">alfredo</label><br>
+            <label><input type="radio" name="sauce" value="pesto">pesto</label>
+          </div>
+
+
+          <div class="col item">
+            <h4>Crust</h4>
+            <label><input type="radio" name="crust" value="standard" checked>standard</label><br>
+            <label><input type="radio" name="crust" value="ultra-thin" checked>ultra-thin $1.20</label><br>
+            <label><input type="radio" name="crust" value="thick-crust">thick-crust $1.20</label><br>
+          </div>
+        </div>
+
+
+
+
         <button type="button" name="button" id="to-toppings">choose toppings</button>
       </div>
 
-      <div class="col ui" id="toppings">
+      <div class="col ui standard" id="toppings">
         <h4>Toppings</h4>
         <p>(first two are free, $1.50 for each additional)</p>
 
@@ -82,20 +95,19 @@
   </form>
 
   <div class="row ui" id="order-summary">
-    <div class="col">
-      <p id="message"></p>
+    <div class="col standard">
       <p>Here's your order so far.</p>
       <ul class="orderlist">
       </ul>
-
-      <button type="button" name="button" id="remove-pizza">Remove Selected Pizza</button>
+      <p id="message"></p>
+      <button type="button" name="button" id="remove-pizza">Remove Pizza</button>
       <button type="button" name="button" id="add-another">Add Another Pizza</button>
       <button type="button" name="button" id="complete-order">Complete Order</button>
     </div>
   </div>
 
   <div class="row ui" id="order-complete">
-    <div class="col">
+    <div class="col standard">
       <p>Thanks for placing your order!</p>
       <ul class="orderlist">
       </ul>
@@ -105,4 +117,5 @@
   </div>
 
 </body>
+
 </html>
