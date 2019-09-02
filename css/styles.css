@@ -7,10 +7,18 @@ body {
   margin: 5px;
 }
 
-#size-sauce-crust {
-  display: none;
+.active {
+  border: solid blue;
 }
 
-#toppings {
-  display: none;
+.orderlist{
+  list-style: none;
+}
+
+.ui {
+  display: none
+}
+
+#sign-in {
+  display: block
 }

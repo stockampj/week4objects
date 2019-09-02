@@ -1,8 +1,10 @@
 var order = new Order();
+var activeID = ""
 
 function Order () {
   this.orderName = "",
   this.pizzas = [],
+  this.orderCost,
   this.count = 0
 }
 
@@ -10,6 +12,17 @@ Order.prototype.addPizza = function(pizza) {
   this.count++;
   pizza.addID(this.count);
   this.pizzas.push(pizza);
+}
+
+Order.prototype.calcOrderCost = function() {
+  var total = 0;
+  for (var i=0; i<this.pizzas.length; i++) {
+    if (this.pizzas[i]) {
+      var pizzaCost = this.pizzas[i].cost;
+      total += pizzaCost;
+    }
+  }
+  this.orderCost = total;
 }
 
 Order.prototype.getPizza = function(pizzaID) {
@@ -20,6 +33,15 @@ Order.prototype.getPizza = function(pizzaID) {
   };
   return false;
 };
+
+Order.prototype.removePizza = function (pizzaID) {
+  for (var i = 0; i < this.pizzas.length; i++) {
+    if (this.pizzas[i].pizzaID == pizzaID) {
+      delete this.pizzas[i];
+    }
+  };
+  return false;
+}
 
 function Pizza (size, sauce, crust, toppings) {
   this.size = size,
@@ -33,16 +55,16 @@ Pizza.prototype.addID = function (count) {
   this.pizzaID = count;
 };
 
-Pizza.prototype.removeTopping = function(topping) {
-  var toppingToDelete = topping;
-  var currentToppings = [];
-  for (i=0 ; i<this.toppings.length; i++) {
-    if (toppingToDelete !== this.toppings[i]) {
-      currentToppings.push(this.toppings[i]);
-    }
-  };
-  this.toppings = currentToppings
-};
+// Pizza.prototype.removeTopping = function(topping) {
+//   var toppingToDelete = topping;
+//   var currentToppings = [];
+//   for (i=0 ; i<this.toppings.length; i++) {
+//     if (toppingToDelete !== this.toppings[i]) {
+//       currentToppings.push(this.toppings[i]);
+//     }
+//   };
+//   this.toppings = currentToppings
+// };
 
 Pizza.prototype.calculateCost = function() {
   var numberOfToppings = this.toppings.length
@@ -74,14 +96,13 @@ function signIn (name) {
   order.orderName = name;
 }
 
-function editPizza(id) {
-  var pizza = order.getPizza(id);
-}
-
 function attachListeners() {
-  $("#orderlist").on("click", "li", function() {
-    editPizza(this.id);
-  })
+  $(".orderlist").on("click", "li", function() {
+    activeID = this.id;
+    var string = "#" + activeID;
+    $(".pizza-description").removeClass("active")
+    $(string).addClass("active")
+  });
 }
 
 $(document).ready(function(){
@@ -91,9 +112,21 @@ $(document).ready(function(){
     event.preventDefault();
     var name = $("#username").val();
     signIn(name);
-    $("#sign-in").slideUp(1000);
+    $(".ui").hide()
     $("#size-sauce-crust").show();
   })
+
+  $("#to-toppings").click(function(){
+    $(".ui").hide()
+    $("#toppings").show();
+    $("#place-order").show();
+  });
+
+  $("#to-size-sauce-crust").click(function(){
+  $(".ui").hide()
+  $("#size-sauce-crust").show();
+  $("#place-order").show();
+  });
 
   $("#pizza-mixer").submit(function(event) {
     event.preventDefault();
@@ -107,11 +140,14 @@ $(document).ready(function(){
     var pizza = new Pizza(size, sauce, crust, toppings);
     pizza.calculateCost();
     order.addPizza(pizza);
+    $(".ui").hide()
+    $("#order-summary").show();
     showOrder();
   })
 
   function showOrder() {
-    $("#orderlist").text("");
+    $("#message").text("")
+    $(".orderlist").text("");
     for (var i=0; i< order.pizzas.length; i++) {
       if (order.pizzas[i]){
         var pizza = order.pizzas[i];
@@ -127,8 +163,40 @@ $(document).ready(function(){
         })
         var pizzaString = "<li class='pizza-description' id='" + id + "'><p>" + size + " pizza with " + crust + " crust and " + sauce + " sauce<br><span class='topping-list'>" + toppingsString + "</span><br><span class='pizzacost'>$" + cost +"</span></p></li>";
 
-        $("#orderlist").append(pizzaString);
+        $(".orderlist").append(pizzaString);
       };
     };
+    order.calcOrderCost()
+    activeID = ""
   }
+
+  $("#add-another").click(function(){
+    clearForm();
+    $(".ui").hide()
+    $("#size-sauce-crust").show();
+  })
+
+  $("#remove-pizza").click(function() {
+    if (activeID === "") {
+      var string = "Please select a pizza to delete";
+      $("#message").append(string)
+    } else {
+      order.removePizza(activeID);
+      showOrder();
+    }
+  })
+
+  function clearForm() {
+    $("#size-selection").val("sm");
+    $("#sauce-selection").val("marinara");
+    $("#crust-selection").val("standard");
+    $(".checkbox").prop("checked", false);
+  }
+
+  $("#complete-order").click(function(){
+    $(".ui").hide()
+    $("#order-complete").show();
+  })
+
+
 });
