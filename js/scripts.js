@@ -98,10 +98,15 @@ function signIn (name) {
 
 function attachListeners() {
   $(".orderlist").on("click", "li", function() {
+    if (activeID === this.id) {
+      $(".pizza-description").removeClass("active")
+      activeID = "";
+    } else {
     activeID = this.id;
     var string = "#" + activeID;
     $(".pizza-description").removeClass("active")
     $(string).addClass("active")
+    }
   });
 }
 
@@ -190,9 +195,9 @@ $("input[name='bird']:checked").val()
   })
 
   function clearForm() {
-    $("input[name=size]").attr('checked',false);
-    $("input[name=sauce]").attr('checked',false);
-    $("input[name=crust]").attr('checked',false);
+    $("input[name=size][value=Personal]").prop("checked",true);
+    $("input[name=sauce][value=marinara]").prop("checked",true);
+    $("input[name=crust][value=standard]").prop("checked",true);
     $(".checkbox").prop("checked", false);
   }
 
